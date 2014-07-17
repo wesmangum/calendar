@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require_relative "lib/month"
+
+month = Month.new(07, 2017)
+puts month.to_s
