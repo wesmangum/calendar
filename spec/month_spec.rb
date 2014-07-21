@@ -1,4 +1,5 @@
 require_relative "../lib/month"
+require_relative "../lib/zellers"
 
 RSpec.describe Month do
   context ".header" do
@@ -61,6 +62,16 @@ RSpec.describe Month do
     it "translates December" do
       Month.new(12, 2012).name.should == "December"
     end
+  end
+
+  context '.weeks' do
+    # it "gives the first day in July 2014" do
+    #   Month.new(7, 2014).weeks.should == ""
+    # end
+
+    # it "gives the first day in February 2000" do
+    #   Month.new(2, 2000).weeks.should ==
+    # end
   end
 
 end
