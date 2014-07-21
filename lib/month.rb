@@ -47,7 +47,11 @@ class Month
     self.length.times do |i|
       i += 1
       if i < 10
-        i = " #{i}"
+        if i == 1
+          i = "  #{i}"
+        else
+          i = " #{i}"
+        end
       end
       calendar << " #{i.to_s}"
     end
