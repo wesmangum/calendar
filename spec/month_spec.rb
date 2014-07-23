@@ -63,15 +63,4 @@ RSpec.describe Month do
       Month.new(12, 2012).name.should == "December"
     end
   end
-
-  context '.weeks' do
-    # it "gives the first day in July 2014" do
-    #   Month.new(7, 2014).weeks.should == ""
-    # end
-
-    # it "gives the first day in February 2000" do
-    #   Month.new(2, 2000).weeks.should ==
-    # end
-  end
-
 end
