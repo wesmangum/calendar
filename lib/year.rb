@@ -33,81 +33,31 @@ class Year
   end
 
   def print_week(month, weeknum)
-    if month == 1
-      string = ""
-      3.times do |i|
-        @month = i + 1
-        week = self.weeks.split("\n")
-        if week[weeknum - 1] == nil
-          week << ""
-        end
-        while week[weeknum - 1].length < 20
-          week[weeknum - 1] = week[weeknum - 1] + " "
-        end
-        string << week[weeknum - 1]
-        if i < 2
-          string << "  "
-        end
+    string = ""
+    3.times do |i|
+      case month
+        when 1
+          @month = i + 1
+        when 2
+          @month = i + 4
+        when 3
+          @month = i + 7
+        when 4
+          @month = i + 10
       end
-      return string
-    end
-
-    if month == 2
-      string = ""
-      3.times do |i|
-        @month = i + 4
-        week = self.weeks.split("\n")
-        if week[weeknum - 1] == nil
-          week << ""
-        end
-        while week[weeknum - 1].length < 20
-          week[weeknum - 1] = week[weeknum - 1] + " "
-        end
-        string << week[weeknum - 1]
-        if i < 2
-          string << "  "
-        end
+      week = self.weeks.split("\n")
+      if week[weeknum - 1] == nil
+        week << ""
       end
-      return string
-    end
-
-    if month == 3
-      string = ""
-      3.times do |i|
-        @month = i + 7
-        week = self.weeks.split("\n")
-        if week[weeknum - 1] == nil
-          week << ""
-        end
-        while week[weeknum - 1].length < 20
-          week[weeknum - 1] = week[weeknum - 1] + " "
-        end
-        string << week[weeknum - 1]
-        if i < 2
-          string << "  "
-        end
+      while week[weeknum - 1].length < 20
+        week[weeknum - 1] = week[weeknum - 1] + " "
       end
-      return string
-    end
-
-    if month == 4
-      string = ""
-      3.times do |i|
-        @month = i + 10
-        week = self.weeks.split("\n")
-        if week[weeknum - 1] == nil
-          week << ""
-        end
-        while week[weeknum - 1].length < 20
-          week[weeknum - 1] = week[weeknum - 1] + " "
-        end
-        string << week[weeknum - 1]
-        if i < 2
-          string << "  "
-        end
+      string << week[weeknum - 1]
+      if i < 2
+        string << "  "
       end
-      return string
     end
+    return string
   end
 
   def weeks
