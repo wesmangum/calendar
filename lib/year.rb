@@ -124,11 +124,9 @@ class Year
   end
 
   def to_s
-
     output = ""
     output << header + "\n\n"
     4.times do |i|
-      puts i
       output << self.name(i + 1) + "\n"
       output << week_names + "\n"
       6.times do |j|
@@ -136,13 +134,6 @@ class Year
       end
       output << "\n"
     end
-
     output
-
-
-    # output = header
-    # output << "\nSu Mo Tu We Th Fr Sa\n"
-    # output << "#{weeks}"
-    # output
   end
 end

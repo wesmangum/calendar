@@ -59,25 +59,15 @@ class Month
   end
 
   def length
-    if @month == 1 || @month == 3 ||  @month == 5 ||  @month == 7 ||  @month == 8 ||  @month == 10 ||  @month == 12
-      31
-    elsif @month != 2
-      30
-    else
-      if self.leap?
-        29
-      else
-        28
-      end
+    case @month
+    when 1, 3, 5, 7, 8, 10, 12 then 31
+    when 4, 6, 9, 11 then 30
+    when 2 then self.leap? ? 29 : 28
     end
   end
 
   def leap?
-    if 0 == @year%4 && 0 != @year%100 || 0 == @year%400
-      true
-    else
-      false
-    end
+    return 0 == @year%4 && 0 != @year%100 || 0 == @year%400
   end
 
   def to_s
