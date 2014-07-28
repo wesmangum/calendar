@@ -22,13 +22,9 @@ class Month
     string = ""
     cal.length.times do |i|
       if i%7 == 0
-        unless i == 0
-          string << "\n"
-        end
+        string << "\n" unless i == 0
         num = cal[i].strip
-        if num.length < 2
-          num = " #{num}"
-        end
+        num = " #{num}" if num.length < 2
         string << num
       else
         string << cal[i]
@@ -41,18 +37,10 @@ class Month
     days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     calendar = []
     day = ZellersCoungruence.calculate(@month, 1, @year)
-    days.index(day).times do
-      calendar << "   "
-    end
+    days.index(day).times{calendar << "   "}
     self.length.times do |i|
       i += 1
-      if i < 10
-        if i == 1
-          i = "  #{i}"
-        else
-          i = " #{i}"
-        end
-      end
+      (i == 1 ? i = "  #{i}" : i = " #{i}") if i < 10
       calendar << " #{i.to_s}"
     end
     calendar
@@ -60,9 +48,9 @@ class Month
 
   def length
     case @month
-    when 1, 3, 5, 7, 8, 10, 12 then 31
-    when 4, 6, 9, 11 then 30
-    when 2 then self.leap? ? 29 : 28
+      when 1, 3, 5, 7, 8, 10, 12 then 31
+      when 4, 6, 9, 11 then 30
+      when 2 then self.leap? ? 29 : 28
     end
   end
 
@@ -71,9 +59,6 @@ class Month
   end
 
   def to_s
-    output = header
-    output << "\nSu Mo Tu We Th Fr Sa\n"
-    output << "#{weeks}"
-    output
+    output = header + "\nSu Mo Tu We Th Fr Sa\n#{weeks}"
   end
 end

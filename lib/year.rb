@@ -36,19 +36,13 @@ class Year
     string = ""
     3.times do |i|
       case month
-        when 1
-          @month = i + 1
-        when 2
-          @month = i + 4
-        when 3
-          @month = i + 7
-        when 4
-          @month = i + 10
+        when 1 then @month = i + 1
+        when 2 then @month = i + 4
+        when 3 then @month = i + 7
+        when 4 then @month = i + 10
       end
       week = self.weeks.split("\n")
-      if week[weeknum - 1] == nil
-        week << ""
-      end
+      week << "" if week[weeknum - 1] == nil
       while week[weeknum - 1].length < 20
         week[weeknum - 1] = week[weeknum - 1] + " "
       end
@@ -102,36 +96,23 @@ class Year
   end
 
   def length
-    if @month == 1 || @month == 3 ||  @month == 5 ||  @month == 7 ||  @month == 8 ||  @month == 10 ||  @month == 12
-      31
-    elsif @month != 2
-      30
-    else
-      if self.leap?
-        29
-      else
-        28
-      end
+    case @month
+      when 1, 3, 5, 7, 8, 10, 12 then 31
+      when 4, 6, 9, 11 then 30
+      when 2 then self.leap? ? 29 : 28
     end
   end
 
   def leap?
-    if 0 == @year%4 && 0 != @year%100 || 0 == @year%400
-      true
-    else
-      false
-    end
+    0 == @year%4 && 0 != @year%100 || 0 == @year%400
   end
 
   def to_s
     output = ""
     output << header + "\n\n"
     4.times do |i|
-      output << self.name(i + 1) + "\n"
-      output << week_names + "\n"
-      6.times do |j|
-        output << print_week((i + 1), (j + 1)) + "\n"
-      end
+      output << self.name(i + 1) + "\n" + week_names + "\n"
+      6.times {|j| output << print_week((i + 1), (j + 1)) + "\n"}
       output << "\n"
     end
     output
